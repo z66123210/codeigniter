@@ -27,6 +27,8 @@ echo "Your Email is " . $email;
 echo "<br/>";
 ?>
 <b id="logout"><a href="logout">Logout</a></b>
+<a href="<?php echo base_url() ?>index.php/user_authentication/display_time">To Show Timetable Click Here</a>
+<a href="<?php echo base_url() ?>index.php/user_authentication/orders_show">To Show Timetable Click Here</a>
 </div>
 <br/>
 </body>

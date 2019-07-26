@@ -17,7 +17,9 @@ $this->load->library('form_validation');
 $this->load->library('session');
 
 // Load database
+$this->load->model("timetable_database");  
 $this->load->model('login_database');
+$this->load->model('orders_database');
 $this->load->helper('url');
 
 }
@@ -108,6 +110,65 @@ $sess_array = array(
 $this->session->unset_userdata('logged_in', $sess_array);
 $data['message_display'] = 'Successfully Logout';
 $this->load->view('login_form', $data);
+}
+
+public function display_time()
+{   
+
+ 
+    
+    $data["fetch_data"] = $this->timetable_database->fetch_data();  
+    
+    $this->load->view("timetable_view", $data);  
+
+}
+public function orders_show()
+{
+    $this->load->view('booking_view');
+
+
+}
+
+public function booking()
+{
+    
+    
+    /*$Departdate = $this->input->post('departdate');
+    $Arrivedate = $this->input->post('arrivedate');
+    $Departfrom = $this->input->post('departfrom');
+    $Arriveto = $this->input->post('arriveto');*/
+
+    $data = array(
+        'Departdate' => $this->input->post('departdate'),
+        'Arrivedate' => $this->input->post('arrivedate'),
+        'Departfrom' => $this->input->post('departfrom'),
+        'Arriveto' => $this->input->post('arriveto')
+        );
+
+   
+
+
+    
+   $result =$this->orders_database->fetch_flight($data);
+  
+
+    $data["fetch_data"] = $result;
+    
+   /* $data = array(
+                    'Departdate' => $this->input->post('departdate'),
+                    'Arrivedate' => $this->input->post('arrivedate')
+                 ); */
+      
+
+     
+
+        $this->load->view("booking_confirm", $data); 
+}
+
+
+public function makebooking(){
+
+    echo "<h1>訂票成功 恭喜你優 ^.^!</h1>";
 }
 
 }
