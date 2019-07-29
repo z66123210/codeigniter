@@ -172,10 +172,12 @@ public function makebooking(){
 $AA = $_POST['variableX'];
 $BB = $_POST['variableY'];
 $DD = $_POST['variableZ'];
+$arrive = $_POST['variableA'];
 $CC = array($AA,$BB);
 $location ='';
+$arriveDate = 0;
 
-
+// Generate Destination City code String
 if ($DD=="Taipei")
 {$location = "Taipei,TW";}
 else if ($DD=="Tokyo")
@@ -185,10 +187,19 @@ else if ($DD=="Sydney")
 else if ($DD=="Shanghai")
 {$location = "Shanghai,CN";}
 
-if ($location =='')
-{
-    exit();
-}
+
+//Access weather data from specific date from 1 to 5
+if ($arrive == 1)
+{$arriveDate = 3;}
+else if ($arrive == 2)
+{$arriveDate = 11;}
+else if ($arrive == 3)
+{$arriveDate = 19;}
+else if ($arrive == 4)
+{$arriveDate = 27;}
+else 
+{$arriveDate = 36;}
+
 
 
 
@@ -199,8 +210,8 @@ $urlContents = file_get_contents("http://api.openweathermap.org/data/2.5/forecas
         
     $weatherArray = json_decode($urlContents, true);
     
-    $weather = $weatherArray['list'][0]['weather'][0]['main'];
-    $data = array($weather,"second");
+    $weather = $weatherArray['list'][$arriveDate]['weather'][0]['main'];
+    $data = array($weather);
 
 
 echo json_encode($data);

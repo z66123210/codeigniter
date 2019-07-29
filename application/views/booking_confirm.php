@@ -32,6 +32,7 @@ header("location: login");
                      <th>Arrive Time</th>  
                      <th>Dpart From</th>  
                      <th>Arrive To</th>  
+                     <th>Make booking</th>  
                 </tr>  
            <?php  
            if($fetch_data->num_rows() > 0)  
@@ -46,7 +47,7 @@ header("location: login");
                      <td><?php echo $row->arriveDate; ?></td>  
                      <td><?php echo $row->departFrom; ?></td>  
                      <td><?php echo $row->arriveTo; ?></td> 
-                     <td><button id="button1" type="button" class="btn btn-primary" onclick="book_flight(<?php echo $userID;?>,<?php echo $row->planeID;?>,'<?php echo $row->arriveTo;?>');">BOOK</button></td>
+                     <td><button id="button1" type="button" class="btn btn-primary" onclick="book_flight(<?php echo $userID;?>,<?php echo $row->planeID;?>,'<?php echo $row->arriveTo;?>',<?php echo $row->arriveDate;?>);">BOOK</button></td>
                 </tr>  
            <?php       
                 }  
@@ -66,12 +67,15 @@ header("location: login");
       <div class="container" id ="ajaxcontainer">  
 
           </div>
+          <div class="container" id ="ajaxcontainer2">  
+
+          </div>
       
  </div>  
  </body>  
  </html>  
  <script type="text/javascript">
- function book_flight(userID, planID, destination){
+ function book_flight(userID, planID, destination, arrive){
      $.ajax({
             url: "<?=site_url("user_authentication/makebooking")?>",
             type: "post", // To protect sensitive data
@@ -79,16 +83,18 @@ header("location: login");
                ajax:true,
                variableX: userID,
                variableY: planID,
-               variableZ: destination
+               variableZ: destination,
+               variableA: arrive
                //and any other variables you want to pass via POST
                    },
             success:function(data){
 
                var obj = jQuery.parseJSON(data);
                
-               $("#ajaxcontainer").html("<h1>your Weather: </h1>" + obj[0] + "<br><br> <h1>your Test: </h1>" + obj[1]);
+               $("#ajaxcontainer").html("<h1>Your Order has been made successfully!</h1> <br><br><h1>The Weather of Your destnation is: <span style =color:red;>" + obj[0] + "</span> Please dress accordingly!</h1>");
 
-            
+               $("#ajaxcontainer2").html("<a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>");
+               
             }
         });
 
