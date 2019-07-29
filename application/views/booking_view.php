@@ -5,14 +5,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans+Condensed:300|Raleway' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
+<body>
 <div id="main">
 <div id="login">
 <h2>Login Form</h2>
 <hr/>
 <?php echo form_open('user_authentication/booking'); ?>
-
 <label>Depart Date :</label>
 <select name="departdate" >
   <option value="1">今天</option>

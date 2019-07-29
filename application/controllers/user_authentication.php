@@ -86,6 +86,7 @@ if ($result != false) {
 $session_data = array(
 'username' => $result[0]->user_name,
 'email' => $result[0]->user_email,
+'userid' => $result[0]->id,
 );
 // Add user data in session
 $this->session->set_userdata('logged_in', $session_data);
@@ -168,7 +169,43 @@ public function booking()
 
 public function makebooking(){
 
-    echo "<h1>訂票成功 恭喜你優 ^.^!</h1>";
+$AA = $_POST['variableX'];
+$BB = $_POST['variableY'];
+$DD = $_POST['variableZ'];
+$CC = array($AA,$BB);
+$location ='';
+
+
+if ($DD=="Taipei")
+{$location = "Taipei,TW";}
+else if ($DD=="Tokyo")
+{$location = "Tokyo,JP";}
+else if ($DD=="Sydney")
+{$location = "Sydney,AU";}
+else if ($DD=="Shanghai")
+{$location = "Shanghai,CN";}
+
+if ($location =='')
+{
+    exit();
+}
+
+
+
+$this->orders_database->insert_data($CC);
+
+
+$urlContents = file_get_contents("http://api.openweathermap.org/data/2.5/forecast?q=".$location."&mode=json&appid=f4aadb1673a1c881d47d10f3d611946e");
+        
+    $weatherArray = json_decode($urlContents, true);
+    
+    $weather = $weatherArray['list'][0]['weather'][0]['main'];
+    $data = array($weather,"second");
+
+
+echo json_encode($data);
+
+
 }
 
 }

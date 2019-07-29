@@ -14,11 +14,14 @@
         }
 
     }  
+
+    
     
     
     function insert_data($data)  
       {  
-           $this->db->insert("tbl_user", $data);  
+          // $this->db->insert("tbl_user", $data);  
+             $this->db->query("INSERT INTO `orders`( `id`, `planeID`) VALUES ($data[0],$data[1])"); 
       }  
       function fetch_data()  
       {  

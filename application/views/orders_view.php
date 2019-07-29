@@ -1,4 +1,5 @@
 <html>  
+     
  <head>  
    <title>Insert Update Delete Data using Codeigniter</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
@@ -6,6 +7,7 @@
  </head>  
  <body>  
  <div class="container">  
+     
       <br /><br /><br />  
       <h3 align="center">Insert Update Delete Data using Codeigniter</h3><br />  
       <form method="post" action="<?php echo base_url()?>main/form_validation">  

@@ -1,9 +1,11 @@
 <?php
-
-print_r($Departdate);
-echo "<br>";
-print_r($Arrivedate);
-
+if (isset($this->session->userdata['logged_in'])) {
+$username = ($this->session->userdata['logged_in']['username']);
+$email = ($this->session->userdata['logged_in']['email']);
+$userID = ($this->session->userdata['logged_in']['userid']);
+} else {
+header("location: login");
+}
 ?>
 
 
@@ -12,6 +14,7 @@ print_r($Arrivedate);
    <title>Insert Update Delete Data using Codeigniter</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+   
  </head>  
  <body>  
  <div class="container">  
@@ -43,7 +46,7 @@ print_r($Arrivedate);
                      <td><?php echo $row->arriveDate; ?></td>  
                      <td><?php echo $row->departFrom; ?></td>  
                      <td><?php echo $row->arriveTo; ?></td> 
-                     <td><a href="<?php echo base_url() ?>index.php/user_authentication/makebooking">Make Booking</a></td>
+                     <td><button id="button1" type="button" class="btn btn-primary" onclick="book_flight(<?php echo $userID;?>,<?php echo $row->planeID;?>,'<?php echo $row->arriveTo;?>');">BOOK</button></td>
                 </tr>  
            <?php       
                 }  
@@ -59,7 +62,37 @@ print_r($Arrivedate);
            ?>  
            </table>  
       </div>  
+
+      <div class="container" id ="ajaxcontainer">  
+
+          </div>
       
  </div>  
  </body>  
  </html>  
+ <script type="text/javascript">
+ function book_flight(userID, planID, destination){
+     $.ajax({
+            url: "<?=site_url("user_authentication/makebooking")?>",
+            type: "post", // To protect sensitive data
+            data: {
+               ajax:true,
+               variableX: userID,
+               variableY: planID,
+               variableZ: destination
+               //and any other variables you want to pass via POST
+                   },
+            success:function(data){
+
+               var obj = jQuery.parseJSON(data);
+               
+               $("#ajaxcontainer").html("<h1>your Weather: </h1>" + obj[0] + "<br><br> <h1>your Test: </h1>" + obj[1]);
+
+            
+            }
+        });
+
+ };
+ 
+   
+</script>
