@@ -11,8 +11,15 @@ header("location: login");
 <title>Admin Page</title>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans+Condensed:300|Raleway' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="background-color:gray; margin-top: 30px; padding:20px;">
+  <span style="font-size: 30px;font-weight: bold;vertical-align: middle;">Airplane Ticket Booking System<span>
+    
+    <a class="navear-brand btn btn-warning pull-right" role="button" href="logout">Logout</a>
+  </nav>
 <div id="profile">
 <?php
 echo "Hello <b id='welcome'><i>" . $username . "</i> !</b>";

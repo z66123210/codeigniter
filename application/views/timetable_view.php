@@ -6,11 +6,15 @@
  </head>  
  <body>  
  <div class="container">  
-      <br /><br /><br />  
+ <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="background-color:gray; margin-top: 30px; padding:20px;">
+  <span style="font-size: 30px;font-weight: bold;vertical-align: middle;">Airplane Ticket Booking System<span>
+    
+    <a class="navear-brand btn btn-warning pull-right" role="button" href="logout">Logout</a>
+  </nav>
       
      
        
-      <h3>Airline Time Table</h3><br />  
+      <h3 style="text-align: center ;padding:15px; font-weight: bold;">Airline Time Table</h3><br />  
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
@@ -51,8 +55,9 @@
            </table>  
       </div>  
       
-      <div>
-      <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
+      <div class="container text-center ; " >  
+          <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-warning'>Go Back</a>
+
           </div>
  </div>  
  </body>  

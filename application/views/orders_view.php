@@ -11,18 +11,26 @@ header("location: login");
 
 <html>  
  <head>  
-   <title>Insert Update Delete Data using Codeigniter</title>  
+   <title>Your Booking History</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
    
  </head>  
  <body>  
- <div class="container">  
+ <div class="container border border-dark">  
+
+ 
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="background-color:gray; margin-top: 30px; padding:20px;">
+  <span style="font-size: 30px;font-weight: bold;vertical-align: middle;">Airplane Ticket Booking System<span>
+    
+    <a class="navear-brand btn btn-warning pull-right" role="button" href="logout">Logout</a>
+  </nav>
+
       <br /><br /><br />  
       
      
        
-      <h3>Fetch Data from Table using Codeigniter</h3><br />  
+      <h3>Your Booking History</h3><br />  
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
@@ -64,11 +72,11 @@ header("location: login");
            </table>  
       </div>  
 
-      <div class="container" id ="ajaxcontainer">  
+      <div class="container padding-top:30px" id ="ajaxcontainer">  
 
           </div>
-          <div class="container" id ="ajaxcontainer2">  
-          <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
+          <div class="container text-center" id ="ajaxcontainer2">  
+          <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-warning'>Go Back</a>
 
           </div>
       
