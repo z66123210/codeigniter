@@ -1,6 +1,6 @@
 <html>  
  <head>  
-   <title>Insert Update Delete Data using Codeigniter</title>  
+   <title>Airline Time Table</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
  </head>  
@@ -10,7 +10,7 @@
       
      
        
-      <h3>Fetch Data from Table using Codeigniter</h3><br />  
+      <h3>Airline Time Table</h3><br />  
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
@@ -51,6 +51,9 @@
            </table>  
       </div>  
       
+      <div>
+      <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
+          </div>
  </div>  
  </body>  
  </html>  

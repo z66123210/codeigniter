@@ -1,83 +1,38 @@
+<?php
+if (isset($this->session->userdata['logged_in'])) {
+$username = ($this->session->userdata['logged_in']['username']);
+$email = ($this->session->userdata['logged_in']['email']);
+$userID = ($this->session->userdata['logged_in']['userid']);
+} else {
+header("location: login");
+}
+?>
+
+
 <html>  
-     
  <head>  
    <title>Insert Update Delete Data using Codeigniter</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+   
  </head>  
  <body>  
  <div class="container">  
-     
       <br /><br /><br />  
-      <h3 align="center">Insert Update Delete Data using Codeigniter</h3><br />  
-      <form method="post" action="<?php echo base_url()?>main/form_validation">  
-           <?php  
-           if($this->uri->segment(2) == "inserted")  
-           {  
-           //base url - http://localhost/tutorial/codeigniter  
-           //redirect url - http://localhost/tutorial/codeigniter/main/inserted  
-                //main - segment(1)  
-                //inserted - segment(2)  
-                echo '<p class="text-success">Data Inserted</p>';  
-           }  
-           if($this->uri->segment(2) == "updated")  
-           {  
-                echo '<p class="text-success">Data Updated</p>';  
-           }  
-           ?>  
-           <?php  
-           if(isset($user_data))  
-           {  
-                foreach($user_data->result() as $row)  
-                {  
-           ?>  
-           <div class="form-group">  
-                <label>Enter First Name</label>  
-                <input type="text" name="first_name" value="<?php echo $row->first_name; ?>" class="form-control" />  
-                <span class="text-danger"><?php echo form_error("first_name"); ?></span>  
-           </div>  
-           <div class="form-group">  
-                <label>Enter Last Name</label>  
-                <input type="text" name="last_name" value="<?php echo $row->last_name; ?>" class="form-control" />  
-                <span class="text-danger"><?php echo form_error("last_name"); ?></span>  
-           </div>  
-           <div class="form-group">  
-                <input type="hidden" name="hidden_id" value="<?php echo $row->id; ?>" />  
-                <input type="submit" name="update" value="Update" class="btn btn-info" />  
-           </div>       
-           <?php       
-                }  
-           }  
-           else  
-           {  
-           ?>  
-           <div class="form-group">  
-                <label>Enter First Name</label>  
-                <input type="text" name="first_name" class="form-control" />  
-                <span class="text-danger"><?php echo form_error("first_name"); ?></span>  
-           </div>  
-           <div class="form-group">  
-                <label>Enter Last Name</label>  
-                <input type="text" name="last_name" class="form-control" />  
-                <span class="text-danger"><?php echo form_error("last_name"); ?></span>  
-           </div>  
-           <div class="form-group">  
-                <input type="submit" name="insert" value="Insert" class="btn btn-info" />  
-           </div>       
-           <?php  
-           }  
-           ?>  
-      </form>  
-      <br /><br />  
+      
+     
+       
       <h3>Fetch Data from Table using Codeigniter</h3><br />  
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
-                     <th>ID</th>  
-                     <th>First Name</th>  
-                     <th>Last Name</th>  
-                     <th>Delete</th>  
-                     <th>Update</th>  
+                     <th>OrderID</th>  
+                     <th>Airline</th>  
+                     <th>Depart Time</th>  
+                     <th>Arrive Time</th>  
+                     <th>Dpart From</th>  
+                     <th>Arrive To</th>  
+                     <th>Cancel booking</th>  
                 </tr>  
            <?php  
            if($fetch_data->num_rows() > 0)  
@@ -86,11 +41,13 @@
                 {  
            ?>  
                 <tr>  
-                     <td><?php echo $row->id; ?></td>  
-                     <td><?php echo $row->first_name; ?></td>  
-                     <td><?php echo $row->last_name; ?></td>  
-                     <td><a href="#" class="delete_data" id="<?php echo $row->id; ?>">Delete</a></td>  
-                     <td><a href="<?php echo base_url(); ?>main/update_data/<?php echo $row->id; ?>">Edit</a></td>  
+                     <td><?php echo $row->orderID; ?></td>  
+                     <td><?php echo $row->airline; ?></td>  
+                     <td><?php echo $row->depDate; ?></td>  
+                     <td><?php echo $row->arriveDate; ?></td>  
+                     <td><?php echo $row->departFrom; ?></td>  
+                     <td><?php echo $row->arriveTo; ?></td> 
+                     <td><button id="button1" type="button" class="btn btn-danger" onclick="book_flight(<?php echo $row->orderID;?>);">Cancel</button></td>
                 </tr>  
            <?php       
                 }  
@@ -99,28 +56,48 @@
            {  
            ?>  
                 <tr>  
-                     <td colspan="5">No Data Found</td>  
+                     <td colspan="8"><h3>No Orders Found</h3></td>  
                 </tr>  
            <?php  
            }  
            ?>  
            </table>  
       </div>  
-      <script>  
-      $(document).ready(function(){  
-           $('.delete_data').click(function(){  
-                var id = $(this).attr("id");  
-                if(confirm("Are you sure you want to delete this?"))  
-                {  
-                     window.location="<?php echo base_url(); ?>main/delete_data/"+id;  
-                }  
-                else  
-                {  
-                     return false;  
-                }  
-           });  
-      });  
-      </script>  
+
+      <div class="container" id ="ajaxcontainer">  
+
+          </div>
+          <div class="container" id ="ajaxcontainer2">  
+          <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
+
+          </div>
+      
  </div>  
  </body>  
  </html>  
+ <script type="text/javascript">
+ function book_flight(order){
+     $.ajax({
+            url: "<?=site_url("user_authentication/delete_order")?>",
+            type: "post", // To protect sensitive data
+            data: {
+               ajax:true,
+               variableX: order
+              
+               //and any other variables you want to pass via POST
+                   },
+            success:function(){
+
+              // var obj = jQuery.parseJSON(data);
+               
+               $("#ajaxcontainer").html("<h1>The selected Order has been deleted!</h1>");
+
+               
+               
+            }
+        });
+
+ };
+ 
+   
+</script>

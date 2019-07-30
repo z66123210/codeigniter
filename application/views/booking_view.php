@@ -56,5 +56,8 @@
 <?php echo form_close(); ?>
 </div>
 </div>
+<div>
+<a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
+</div>
 </body>
 </html>

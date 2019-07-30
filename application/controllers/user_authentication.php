@@ -219,6 +219,29 @@ echo json_encode($data);
 
 }
 
+
+public function check_orders()
+{
+    $userID = ($this->session->userdata['logged_in']['userid']);
+
+    $useridarray = array( $userID );
+
+        $result =$this->orders_database->fetch_orders($useridarray);
+       
+        $data["fetch_data"] = $result;
+
+        $this->load->view("orders_view", $data); 
+
+}
+public function delete_order()
+{
+    $orderid = $_POST['variableX'];
+    $this->orders_database->delete_data($orderid);
+
+
+
+}
+
 }
 
 ?>

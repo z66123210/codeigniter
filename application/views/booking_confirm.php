@@ -11,7 +11,7 @@ header("location: login");
 
 <html>  
  <head>  
-   <title>Insert Update Delete Data using Codeigniter</title>  
+   <title>Airline Ticket Booking Page</title>  
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
    
@@ -22,7 +22,7 @@ header("location: login");
       
      
        
-      <h3>Fetch Data from Table using Codeigniter</h3><br />  
+      <h3>Airline Ticket Booking Page</h3><br />  
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
@@ -68,6 +68,7 @@ header("location: login");
 
           </div>
           <div class="container" id ="ajaxcontainer2">  
+          <a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>
 
           </div>
       
@@ -93,7 +94,7 @@ header("location: login");
                
                $("#ajaxcontainer").html("<h1>Your Order has been made successfully!</h1> <br><br><h1>The Weather of Your destnation is: <span style =color:red;>" + obj[0] + "</span> Please dress accordingly!</h1>");
 
-               $("#ajaxcontainer2").html("<a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>");
+              // $("#ajaxcontainer2").html("<a href='<?php echo base_url() ?>index.php/user_authentication/user_login_process' class='btn btn-default'>Go Back</a>");
                
             }
         });

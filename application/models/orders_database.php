@@ -15,6 +15,19 @@
 
     }  
 
+    function fetch_orders($data)  
+    {  
+          $query = $this->db->query("SELECT orders.orderID, timetable.airline, timetable.depDate, timetable.arriveDate, timetable.departFrom, timetable.arriveTo FROM orders INNER JOIN timetable ON orders.planeID = timetable.planeID WHERE orders.id = $data[0];"); 
+        if(!$query)
+        {
+            echo "<h1>Sorry, No Match Result!</h1>";
+        }
+        else {
+            return $query;
+        }
+
+    }  
+
     
     
     
@@ -34,8 +47,8 @@
            return $query;  
       }  
       function delete_data($id){  
-           $this->db->where("id", $id);  
-           $this->db->delete("tbl_user");  
+           $this->db->where("orderID", $id);  
+           $this->db->delete("orders");  
            //DELETE FROM tbl_user WHERE id = $id  
       }  
       function fetch_single_data($id)  

@@ -32,6 +32,10 @@ echo "<br/>";
 <br>
 
 <a href="<?php echo base_url() ?>index.php/user_authentication/orders_show">To Book a Ticket Click Here</a>
+<br>
+<br>
+
+<a href="<?php echo base_url() ?>index.php/user_authentication/check_orders">To Review your orders Click Here</a>
 </div>
 <br/>
 </body>
