@@ -52,7 +52,7 @@
 <br>
 <br>
 <input type="submit" value=" Submit " name="submit"/><br />
-<a href="<?php echo base_url() ?>index.php/user_authentication/user_registration_show">To SignUp Click Here</a>
+
 <?php echo form_close(); ?>
 </div>
 </div>
